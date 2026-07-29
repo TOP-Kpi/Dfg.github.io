@@ -1,0 +1,131 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股价收益率计算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- 标题 -->
+            <div class="header">
+                <div class="icon-row">
+                    <div class="icon-circle">📈</div>
+                    <h1>股价收益率计算器</h1>
+                </div>
+                <p class="subtitle">输入本金，选择收益率，秒算收益与总额</p>
+            </div>
+            <hr class="divider">
+
+            <!-- 本金输入 -->
+            <div class="input-group">
+                <label>
+                    <span class="label-icon">💰</span> 投入本金
+                    <span class="label-hint">人民币</span>
+                </label>
+                <div class="input-wrapper">
+                    <span class="currency-symbol">¥</span>
+                    <input
+                    type="text"
+                    id="principal"
+                    inputmode="decimal"
+                    placeholder="请输入本金金额"
+                    value="10000"
+                    autocomplete="off"
+                    >
+                    <div class="quick-fill">
+                        <button data-amount="5000">5千</button>
+                        <button data-amount="10000">1万</button>
+                        <button data-amount="50000">5万</button>
+                        <button data-amount="100000">10万</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收益率选择 -->
+            <div class="rate-section">
+                <div class="section-label">
+                    <span class="label-icon">📊</span> 预期收益率
+                </div>
+                <!-- 预设按钮 -->
+                <div class="preset-grid" id="presetGrid">
+                    <button class="preset-btn negative" data-rate="-20">-20%</button>
+                    <button class="preset-btn negative" data-rate="-10">-10%</button>
+                    <button class="preset-btn negative" data-rate="-5">-5%</button>
+                    <button class="preset-btn" data-rate="0">0%</button>
+                    <button class="preset-btn positive" data-rate="5">+5%</button>
+                    <button class="preset-btn positive" data-rate="10">+10%</button>
+                    <button class="preset-btn positive" data-rate="15">+15%</button>
+                    <button class="preset-btn positive" data-rate="20">+20%</button>
+                    <button class="preset-btn positive" data-rate="30">+30%</button>
+                    <button class="preset-btn positive" data-rate="50">+50%</button>
+                    <button class="preset-btn positive" data-rate="100">+100%</button>
+                </div>
+
+                <!-- 自定义收益率输入 -->
+                <div class="custom-rate-row">
+                    <div class="custom-rate-input-wrap">
+                        <input
+                        type="text"
+                        id="customRate"
+                        inputmode="decimal"
+                        placeholder="自定义收益率"
+                        value=""
+                        autocomplete="off"
+                        >
+                        <span class="percent-suffix">%</span>
+                    </div>
+                    <div class="rate-type-toggle">
+                        <button class="rate-type-btn active" data-sign="positive" id="btnPositive">📈 上涨</button>
+                        <button class="rate-type-btn" data-sign="negative" id="btnNegative">📉 下跌</button>
+                    </div>
+                </div>
+
+                <!-- 滑块 -->
+                <div class="slider-container">
+                    <div class="slider-labels">
+                        <span>-100%</span><span>-50%</span><span>0%</span><span>+50%</span><span>+100%</span><span>+200%</span>
+                    </div>
+                    <input
+                    type="range"
+                    id="rateSlider"
+                    min="-100"
+                    max="200"
+                    value="10"
+                    step="0.1"
+                    >
+                    <div class="slider-current positive-rate" id="sliderCurrent">+10.0%</div>
+                </div>
+            </div>
+
+            <!-- 结果展示区 -->
+            <div class="result-area profit" id="resultArea">
+                <div class="result-badge" id="resultBadge">📈 盈利</div>
+                <div class="result-row">
+                    <div class="result-item">
+                        <div class="result-label">收益金额</div>
+                        <div class="result-value gain" id="resultGain">¥1,000.00</div>
+                    </div>
+                    <div class="result-divider-vert"></div>
+                    <div class="result-item">
+                        <div class="result-label">最终总额</div>
+                        <div class="result-value" id="resultTotal">¥11,000.00</div>
+                    </div>
+                </div>
+                <!-- 可视化条 -->
+                <div class="visual-bar-wrap">
+                    <div class="visual-bar-fill profit-fill" id="visualBarFill" style="width: 50%;"></div>
+                    <div class="visual-bar-marker" id="visualBarMarker" style="left: 50%;"></div>
+                </div>
+                <div class="visual-bar-labels">
+                    <span>本金</span><span>盈亏平衡点</span><span>最终总额</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
